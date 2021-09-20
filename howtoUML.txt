@@ -1,0 +1,5 @@
+1.ประกาส class ex. implement extend
+2.atribute 
+	มี atibute จากคลาสอื่น ต้องมีเส้นทึบระหว่าง class
+3.in method & parameter 
+4.return type
