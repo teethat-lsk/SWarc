@@ -7,12 +7,15 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public void setWidth(int width) {this.setSide(width);
+    public void setWidth(int width) {
+        // this.setSide(width);
+        super.setWidth(width);
     }
 
     @Override
     public void setHeight(int height) {
-        this.setSide(height);
+        // this.setSide(height);
+        super.setHeight(height);
     }
 
     public void setSide(int side) {
