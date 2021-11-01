@@ -1,22 +1,26 @@
-package Subscriber;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.concurrent.Flow;
+import java.util.concurrent.Flow.Subscription;
 
-public class NumberSubscriber extends StringSubscriber {
-    private final String subscriptionType = "Number";
+public class AlphabetSubscriber extends StringSubscriber {
+    private final String subscriptionType = "Alphabet";
     private final String name;
     private String message = "";
     private final String filePath;
-    public NumberSubscriber(String name) throws IOException {
+    public AlphabetSubscriber(String name) throws IOException {
 
         this.name = name;
-        File file = new File("src/main/java/Subscriber/Output/"+this.name+".txt");
+        File file = new File("src/main/java/Output/"+this.name+".txt");
         file.createNewFile();
         this.filePath = file.getPath();
+    }
+    @Override
+    public StringSubscriber subscribe(StringPublisher publisher) {
+        super.subscribe(publisher);
+        return this;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class NumberSubscriber extends StringSubscriber {
 
     //Flow
     @Override
-    public void onSubscribe(Flow.Subscription subscription) {
+    public void onSubscribe(Subscription subscription) {
 
         subscription.request(1000);
     }
@@ -47,10 +51,10 @@ public class NumberSubscriber extends StringSubscriber {
 
         try {
             if(!this.message.contentEquals("")){
-                Writer fileWriter = new FileWriter(filePath,true);
-                fileWriter.write(this.message+"\n");
-                fileWriter.close();
-                this.message="";
+            Writer fileWriter = new FileWriter(filePath,true);
+            fileWriter.write(this.message+"\n");
+            fileWriter.close();
+            this.message="";
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package Subscriber;
+
 
 import java.io.File;
 import java.io.FileWriter;
@@ -14,9 +14,14 @@ public class SymbolSubscriber extends StringSubscriber {
     public SymbolSubscriber(String name) throws IOException {
 
         this.name = name;
-        File file = new File("src/main/java/Subscriber/Output/"+this.name+".txt");
+        File file = new File("src/main/java/Output/"+this.name+".txt");
         file.createNewFile();
         this.filePath = file.getPath();
+    }
+    @Override
+    public StringSubscriber subscribe(StringPublisher publisher) {
+        super.subscribe(publisher);
+        return this;
     }
 
     @Override

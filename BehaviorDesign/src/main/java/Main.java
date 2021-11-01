@@ -1,7 +1,3 @@
-import Subscriber.AlphabetSubscriber;
-import Subscriber.NumberSubscriber;
-import Subscriber.StringSubscriber;
-import Subscriber.SymbolSubscriber;
 
 
 import java.nio.file.Files;
@@ -23,22 +19,20 @@ public class Main {
         );
 
         String message;
-        //Subscriber
-        StringSubscriber alphaSub1 = new AlphabetSubscriber("alphaSub1");
-        StringSubscriber alphaSub2 = new AlphabetSubscriber("alphaSub2");
-        StringSubscriber numSub1 = new NumberSubscriber("numSub1");
-        StringSubscriber numSub2 = new NumberSubscriber("numSub2");
-        StringSubscriber symSub1 = new SymbolSubscriber("symSub1");
-        StringSubscriber symSub2 = new SymbolSubscriber("symSub2");
 
         //Publisher
         StringPublisher publisher = new StringPublisher();
-        publisher.addSubscriber(alphaSub1);
-        publisher.addSubscriber(alphaSub2);
-        publisher.addSubscriber(numSub1);
-        publisher.addSubscriber(numSub2);
-        publisher.addSubscriber(symSub1);
-        publisher.addSubscriber(symSub2);
+
+
+        //Subscriber
+        StringSubscriber alphaSub1 = new AlphabetSubscriber("alphaSub1").subscribe(publisher);
+        StringSubscriber alphaSub2 = new AlphabetSubscriber("alphaSub2").subscribe(publisher);
+        StringSubscriber numSub1 = new NumberSubscriber("numSub1").subscribe(publisher);
+        StringSubscriber numSub2 = new NumberSubscriber("numSub2").subscribe(publisher);
+        StringSubscriber symSub1 = new SymbolSubscriber("symSub1").subscribe(publisher);
+        StringSubscriber symSub2 = new SymbolSubscriber("symSub2").subscribe(publisher);
+
+
 
         //Publisher publishes content in Publisher01.txt
         for (Path path:filePath) {
